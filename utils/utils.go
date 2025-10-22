@@ -95,7 +95,7 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Icon:           icon,
 				Terminal:       terminal,
 				Type:           "Application",
-				Categories:     "Utility;",
+				Categories:     "Application;",
 				StartupWMClass: opts.WMClass,
 				StartupNotify:  true,
 			}, nil
@@ -115,7 +115,7 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Icon:           icon,
 				Terminal:       terminal,
 				Type:           "Application",
-				Categories:     "Utility;",
+				Categories:     "Application;",
 				StartupWMClass: opts.WMClass,
 				StartupNotify:  true,
 			}, nil

@@ -11,7 +11,7 @@ import (
 )
 
 func usage() {
-	fmt.Fprintf(os.Stderr, "Usage: %s [options] -filename <path> <appname>\n", filepath.Base(os.Args[0]))
+	fmt.Fprintf(os.Stderr, "Usage: %s [options] -exec <path> <appname>\n", filepath.Base(os.Args[0]))
 	flag.PrintDefaults()
 }
 
