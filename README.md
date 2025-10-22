@@ -1,0 +1,2 @@
+# todotdesktop
+用于给linux环境下的脚本或appimage创建快捷方式
