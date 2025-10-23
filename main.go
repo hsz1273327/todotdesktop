@@ -103,7 +103,7 @@ func main() {
 	comment := flag.String("comment", "", "描述 (可选)")
 	iconFilePath := flag.String("icon", "", "图标路径 (可选)")
 	version := flag.String("version", "", "应用版本 (可选, 否则会尝试从文件名解析)")
-	execType := flag.String("type", "", "应用类型 (e.g., 'script', 'electron')")
+	execType := flag.String("type", "", "应用类型 (e.g., 'script', 'chromium')")
 	terminal := flag.String("terminal", "auto", "是否在终端中运行 ('true', 'false', 'auto')")
 	wmclass := flag.String("wmclass", "", "窗口的 WM_CLASS 值 (可选)")
 

@@ -13,20 +13,6 @@ func FileExists(path string) bool {
 	return err == nil
 }
 
-// // SanitizeFileName 清理文件名以符合规范
-// func SanitizeFileName(name string) string {
-// 	name = strings.ToLower(name)
-// 	name = strings.ReplaceAll(name, " ", "-")
-// 	name = strings.ReplaceAll(name, "_", "-")
-// 	// 移除所有非字母、数字、连字符的字符
-// 	re := regexp.MustCompile(`[^a-z0-9-]`)
-// 	res := re.ReplaceAllString(name, "")
-// 	if res == "" {
-// 		return "application"
-// 	}
-// 	return res
-// }
-
 func dotDesktopFilePath(appname string) (string, error) {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {

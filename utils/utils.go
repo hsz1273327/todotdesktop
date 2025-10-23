@@ -6,9 +6,11 @@ import (
 )
 
 func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
+	// 处理 WMClass 的默认值
 	if opts.WMClass == "" && !IsX11() {
 		opts.WMClass = opts.AppName
 	}
+	// 处理版本号的默认值
 	version := opts.Version
 	if version == "" {
 		appfilename := filepath.Base(opts.ExecPath)
@@ -17,6 +19,16 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 			version = _version
 		}
 	}
+	//处理描述信息的默认值
+	comment := opts.Comment
+	if comment == "" {
+		if opts.ExecType == "script" {
+			comment = opts.AppName + " 脚本快捷方式"
+		} else {
+			comment = opts.AppName + " 应用快捷方式"
+		}
+	}
+	// 处理图标
 	icon := ""
 	if opts.IconFilePath != "" {
 		iconsuffix := filepath.Ext(opts.IconFilePath)
@@ -70,7 +82,7 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Version:        version,
 				Name:           opts.AppName,
 				Encoding:       "UTF-8",
-				Comment:        opts.Comment,
+				Comment:        comment,
 				Exec:           opts.ExecPath,
 				Icon:           icon,
 				Terminal:       terminal,
@@ -79,7 +91,7 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				StartupWMClass: opts.WMClass,
 			}, nil
 		}
-	case "electron":
+	case "chromium":
 		{
 			terminal := false
 			if opts.Terminal == "true" {
@@ -89,7 +101,7 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Version:        opts.Version,
 				Name:           opts.AppName,
 				Encoding:       "UTF-8",
-				Comment:        opts.Comment,
+				Comment:        comment,
 				Exec:           opts.ExecPath + " --no-sandbox" + " %U",
 				Icon:           icon,
 				Terminal:       terminal,
@@ -108,7 +120,7 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Version:        version,
 				Name:           opts.AppName,
 				Encoding:       "UTF-8",
-				Comment:        opts.Comment,
+				Comment:        comment,
 				Exec:           opts.ExecPath + " %U",
 				Icon:           icon,
 				Terminal:       terminal,
