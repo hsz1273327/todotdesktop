@@ -77,7 +77,6 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Type:           "Application",
 				Categories:     "Utility;",
 				StartupWMClass: opts.WMClass,
-				StartupNotify:  true,
 			}, nil
 		}
 	case "electron":
@@ -97,7 +96,6 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Type:           "Application",
 				Categories:     "Application;",
 				StartupWMClass: opts.WMClass,
-				StartupNotify:  true,
 			}, nil
 		}
 	default:
@@ -117,7 +115,6 @@ func GenerateDotDesktopEntry(opts Options) (*DesktopEntry, error) {
 				Type:           "Application",
 				Categories:     "Application;",
 				StartupWMClass: opts.WMClass,
-				StartupNotify:  true,
 			}, nil
 		}
 	}

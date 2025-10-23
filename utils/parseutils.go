@@ -22,16 +22,16 @@ func GenerateDotDesktopContent(entry DesktopEntry) (string, error) {
 
 	tmpl := `[Desktop Entry]
 {{if .Version}}Version={{.Version}}
-{{end}}Name={{.Name}}
+{{end}}Type={{.Type}}
 Encoding={{.Encoding}}
+Name={{.Name}}
 {{if .Comment}}Comment={{.Comment}}
+{{end}}{{if .Icon}}Icon={{.Icon}}
 {{end}}Exec={{.Exec}}
-{{if .Icon}}Icon={{.Icon}}
-{{end}}Terminal={{if .Terminal}}true{{else}}false{{end}}
-Type={{.Type}}
+Terminal={{if .Terminal}}true{{else}}false{{end}}
 Categories={{.Categories}}
 {{if .StartupWMClass}}StartupWMClass={{.StartupWMClass}}
-{{end}}StartupNotify={{if .StartupNotify}}true{{else}}false{{end}}
+{{end}}
 `
 	t, err := template.New("desktop").Parse(tmpl)
 	if err != nil {
@@ -66,7 +66,6 @@ func ParseDotDesktopContent(content string) (DesktopEntry, error) {
 		Type:           contentMap["Type"],
 		Categories:     contentMap["Categories"],
 		StartupWMClass: contentMap["StartupWMClass"],
-		StartupNotify:  contentMap["StartupNotify"] == "true",
 	}
 	return entry, nil
 }
@@ -131,12 +130,6 @@ func updateEntry(originalEntry DesktopEntry, updatedEntry DesktopEntry) (Desktop
 		result.StartupWMClass = updatedEntry.StartupWMClass
 	} else {
 		result.StartupWMClass = originalEntry.StartupWMClass
-	}
-	// 更新启动通知
-	if updatedEntry.StartupNotify != originalEntry.StartupNotify {
-		result.StartupNotify = updatedEntry.StartupNotify
-	} else {
-		result.StartupNotify = originalEntry.StartupNotify
 	}
 	return result, nil
 }

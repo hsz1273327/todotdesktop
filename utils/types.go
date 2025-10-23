@@ -11,7 +11,6 @@ type DesktopEntry struct {
 	Type           string
 	Categories     string
 	StartupWMClass string
-	StartupNotify  bool
 }
 
 // Options 包含了创建快捷方式所需的所有用户输入
